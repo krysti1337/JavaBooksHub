@@ -2,6 +2,8 @@ package com.example.JavaBooksHub.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,11 +21,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String username;
 
+    @Email
+    @NotBlank
     private String email;
 
+    @NotBlank
     private String password;
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
