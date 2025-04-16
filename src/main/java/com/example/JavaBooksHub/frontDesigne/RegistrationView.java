@@ -1,5 +1,7 @@
 package com.example.JavaBooksHub.frontDesigne;
 
+import com.example.JavaBooksHub.security.UserService;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -15,7 +17,8 @@ import java.awt.*;
 @Route("register")
 public class RegistrationView extends VerticalLayout {
 
-    public RegistrationView() {
+    public RegistrationView(UserService userService) {
+
         // Creăm componentele
         TextField username = new TextField("Username");
         EmailField email = new EmailField("Email");
@@ -36,7 +39,9 @@ public class RegistrationView extends VerticalLayout {
             }
 
             // TODO: adaugă logica reală de înregistrare aici
-            Notification.show("Account created for " + username.getValue());
+            userService.registerUser(username.getValue(), email.getValue(), password.getValue());
+
+
         });
 
         // Layout styling

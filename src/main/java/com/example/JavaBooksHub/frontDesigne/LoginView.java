@@ -18,14 +18,17 @@ import java.awt.*;
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     private final LoginForm login = new LoginForm();
     UserService userService = new UserService();
-    /*Punem un nume de clasa ca sa putem stiliza mai ușor pagina de login cu CSS
+
+    public LoginView(UserService userService) {
+
+         /*Punem un nume de clasa ca sa putem stiliza mai ușor pagina de login cu CSS
         Facem ca pagina sa ocupe tot ecranul, să arate „plin”
         Centram tot ce adaugam in mijloc, pe verticala
         Si pe orizontala – vrem ca totul sa fie exact in mijlocul paginii
         Spunem componentei de login unde sa trimita datele cand cineva apasa „Login”
         Adaugam un titlu mare si formularul de login in pagina
          */
-    public LoginView(UserService userService) {
+
         this.userService = userService;
 
         addClassName("login-view");
