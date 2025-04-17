@@ -5,8 +5,8 @@ JavaBooksHub este o aplicatie web pentru gestionarea unei biblioteci digitale de
 
 Tech Stack
 
-Backend: Java, Spring Boot, Spring Security, Spring Data JPA
-Frontend: Vaadin Flow
+Backend: Java, Spring Boot, Spring Security, Spring Data JPA, 
+Frontend: Vaadin Flow, NodeJs
 Baza de date: PostgreSQL
 Build Tool: Maven
 Autentificare: Custom login/register, cu criptarea parolelor
@@ -27,6 +27,8 @@ JDK 17+
 PostgreSQL (versiune recomandata: 14+)
 
 Maven
+
+NodeJs
 
 Instalare si rulare locala
 
