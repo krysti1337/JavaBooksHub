@@ -1,0 +1,15 @@
+.custom-input-field::part(input-field) {
+    background-color: #2C2C2C;
+    color: white;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 300px;
+    border: none;
+    box-shadow: none;
+}
+
+.custom-input-field::part(input-field):hover,
+.custom-input-field::part(input-field):focus {
+    background-color: #2C2C2C !important;
+    box-shadow: none !important;
+}

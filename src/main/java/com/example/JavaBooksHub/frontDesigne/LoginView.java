@@ -10,6 +10,7 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.example.JavaBooksHub.security.*;
+import com.vaadin.flow.component.button.Button;
 
 import java.awt.*;
 
@@ -18,6 +19,7 @@ import java.awt.*;
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     private final LoginForm login = new LoginForm();
     UserService userService = new UserService();
+
 
     public LoginView(UserService userService) {
 
@@ -31,19 +33,33 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
         this.userService = userService;
 
+        // Layout setup
         addClassName("login-view");
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
+        getStyle().set("background-color", "#1E1E1E");
 
-        add(new H1("JavaBooks Hub"), login);
+        login.setAction("/login");
+        login.getElement().getStyle().set("background-color", "#2C2C2C");
+        login.getElement().getStyle().set("padding", "2rem");
+        login.getElement().getStyle().set("border-radius", "10px");
+        login.getElement().getStyle().set("box-shadow", "0 0 10px rgba(0,0,0,0.5)");
+        login.getElement().getStyle().set("color", "#F0F0F0");
+
+        H1 title = new H1("JavaBooks Hub");
+        title.getStyle().set("color", "#FFA500");
+
+        Button registerRedirect = new Button("Register", event -> UI.getCurrent().navigate("register"));
+        registerRedirect.getStyle().set("background-color", "#FFA500");
+        registerRedirect.getStyle().set("color", "white");
+        registerRedirect.getStyle().set("margin-top", "1rem");
+        registerRedirect.getStyle().set("border-radius", "8px");
+
+        add(title, login, registerRedirect);
 
         login.addLoginListener(e -> {
-            String username = e.getUsername();
-            String password = e.getPassword();
-
-            boolean authenticated = userService.authenticateUser(username, password);
-
+            boolean authenticated = userService.authenticateUser(e.getUsername(), e.getPassword());
             if (authenticated) {
                 UI.getCurrent().navigate("home");
             } else {
@@ -52,13 +68,9 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         });
     }
 
-
-    public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        // infromeaza user-ul despre erroarea aparuta la autentificare
-        if(beforeEnterEvent.getLocation()
-                .getQueryParameters()
-                .getParameters()
-                .containsKey("error")) {
+    @Override
+    public void beforeEnter(BeforeEnterEvent event) {
+        if (event.getLocation().getQueryParameters().getParameters().containsKey("error")) {
             login.setError(true);
         }
     }

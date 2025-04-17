@@ -17,6 +17,7 @@ public class HomeView extends VerticalLayout {
         add(
               new H1("Home view")
         );
+
     }
     GridContextMenu<User> menu = new GridContextMenu<>();
 
